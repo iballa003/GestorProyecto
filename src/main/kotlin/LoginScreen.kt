@@ -15,36 +15,77 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
 
-@Composable
-fun LoginScreen() {
-    Column(
-        modifier = Modifier.fillMaxSize().padding(bottom = 28.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ){
-        var username by remember {
-            mutableStateOf("username")
-        }
-        var password by remember {
-            mutableStateOf("password")
-        }
-        Text(text = "Login", fontWeight = FontWeight.Bold, fontSize = 28.sp)
-        TextField(value = username,
-            onValueChange = { username = it },
-            label = { Text("Username") },
-            modifier = Modifier.padding(top = 30.dp)
-        )
-        TextField(value = password,
-            onValueChange = { password = it },
-            label = { Text("Password") },
-            modifier = Modifier.padding(top = 30.dp)
-        )
-        Button(
-            onClick = {},
-            modifier = Modifier.padding(top = 30.dp)
+//@Composable
+//fun LoginScreen() {
+//    Column(
+//        modifier = Modifier.fillMaxSize().padding(bottom = 28.dp),
+//        verticalArrangement = Arrangement.Center,
+//        horizontalAlignment = Alignment.CenterHorizontally
+//    ){
+//        var username by remember {
+//            mutableStateOf("username")
+//        }
+//        var password by remember {
+//            mutableStateOf("password")
+//        }
+//        Text(text = "Login", fontWeight = FontWeight.Bold, fontSize = 28.sp)
+//        TextField(value = username,
+//            onValueChange = { username = it },
+//            label = { Text("Username") },
+//            modifier = Modifier.padding(top = 30.dp)
+//        )
+//        TextField(value = password,
+//            onValueChange = { password = it },
+//            label = { Text("Password") },
+//            modifier = Modifier.padding(top = 30.dp)
+//        )
+//        Button(
+//            onClick = {},
+//            modifier = Modifier.padding(top = 30.dp)
+//        ){
+//            Text(text = "Login")
+//        }
+//    }
+//}
+class LoginScreen : Screen {
+    @Composable
+    override fun Content() {
+        // Get the navigator
+        val navigator = LocalNavigator.current
+        Column(
+            modifier = Modifier.fillMaxSize().padding(bottom = 28.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ){
-            Text(text = "Login")
-        }
+            var username by remember {
+                mutableStateOf("username")
+            }
+            var password by remember {
+                mutableStateOf("password")
+            }
+            Text(text = "Login", fontWeight = FontWeight.Bold, fontSize = 28.sp)
+            TextField(value = username,
+                onValueChange = { username = it },
+                label = { Text("Username") },
+                modifier = Modifier.padding(top = 30.dp)
+            )
+            TextField(value = password,
+                onValueChange = { password = it },
+                label = { Text("Password") },
+                modifier = Modifier.padding(top = 30.dp)
+            )
+            Button(
+                onClick = {
+                    // Navigate to details screen with the arguments
+                    navigator?.push(WelcomeScreen())
+                },
+                modifier = Modifier.padding(top = 30.dp)
+            ){
+                Text(text = "Login")
+            }
     }
+}
 }
