@@ -25,7 +25,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.request.forms.*
-import kotlinx.serialization.json.Json
+
 import network.ApiLogIn
 
 class LoginScreen : Screen {
@@ -39,10 +39,10 @@ class LoginScreen : Screen {
             horizontalAlignment = Alignment.CenterHorizontally
         ){
             var username by remember {
-                mutableStateOf("username")
+                mutableStateOf("")
             }
             var password by remember {
-                mutableStateOf("password")
+                mutableStateOf("")
             }
             Text(text = "Login", fontWeight = FontWeight.Bold, fontSize = 28.sp)
             TextField(value = username,
