@@ -61,7 +61,7 @@ class LoginScreen : Screen {
                 onClick = {
                     ApiLogIn(username, password) { user ->
                         // Navigate to details screen with the arguments
-                        navigator?.push(WelcomeScreen())
+                        navigator?.push(WelcomeScreen(user))
                     }
 
 

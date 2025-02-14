@@ -12,8 +12,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
+import model.User
 
-class ProyectsScreen : Screen {
+class ProyectsScreen(user: User) : Screen {
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.current
@@ -69,3 +70,4 @@ class ProyectsScreen : Screen {
         }
     }
 }
+

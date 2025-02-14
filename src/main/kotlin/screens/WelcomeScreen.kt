@@ -7,21 +7,22 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
+import model.User
 
 //@Composable
 //fun WelcomeScreen() {
 //    Text(text = "Welcome")
 //}
-class WelcomeScreen : Screen {
+class WelcomeScreen(val user: User) : Screen {
     @Composable
     override fun Content() {
         // Get the navigator
         val navigator = LocalNavigator.current
         Column {
-            Text(text = "Welcome Iballa")
+            Text(text = "Bienvenido "+user.nombre)
             Row {
                 Button(onClick = {
-                    navigator?.push(ProyectsScreen())
+                    navigator?.push(ProyectsScreen(user))
                 }){
                     Text(text = "Mostrar proyectos")
                 }
