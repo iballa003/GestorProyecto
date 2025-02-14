@@ -1,6 +1,12 @@
 package model
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class User(val id: Int, val name: String, val email: String)
+data class User(
+    @SerialName("id") var idEmpleado: Int,
+    @SerialName("id_gestor") var idGestor: Int,
+    @SerialName("nombre") var nombre: String,
+    @SerialName("email") var email: String
+)
