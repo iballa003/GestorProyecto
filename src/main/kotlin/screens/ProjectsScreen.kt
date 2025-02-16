@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.Navigator
 import model.Project
 import model.User
 import network.getFinishedProjects
@@ -52,7 +53,7 @@ class ProyectsScreen(val user: User, val finished : Boolean) : Screen {
             }
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(proyectsList.value) { project ->
-                    ProjectItem(project, {})
+                    ProjectItem(project, navigator!!)
                 }
             }
         }
@@ -60,16 +61,16 @@ class ProyectsScreen(val user: User, val finished : Boolean) : Screen {
 }
 
 @Composable
-fun ProjectItem(project: Project, onProjectClick: (Project) -> Unit) {
+fun ProjectItem(project: Project, navigator: Navigator) {
     Card(
-        modifier = Modifier.fillMaxWidth().padding(8.dp).clickable { onProjectClick(project) },
+        modifier = Modifier.fillMaxWidth().padding(8.dp),
         //elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(text = project.nombre, fontSize = 20.sp)
             Text(text = project.descripcion, fontSize = 14.sp, modifier = Modifier.padding(top = 4.dp))
             Spacer(modifier = Modifier.height(8.dp))
-            Button(onClick = { onProjectClick(project) }) {
+            Button(onClick = { navigator?.push(ProjectDetailScreen(project)) }) {
                 Text(text = "Más Información")
             }
         }
