@@ -19,6 +19,22 @@ fun getProjects(onSuccessResponse: (List<Project>) -> Unit) {
             contentType(ContentType.Application.Json)
         }
         if (response.status == HttpStatusCode.OK) {
+            val listProject = response.body<List<Project>>()
+            onSuccessResponse(listProject)
+        } else {
+            println("Error: ${response.status}, Body: ${response.bodyAsText()}")
+        }
+    }
+}
+
+fun getFinishedProjects(onSuccessResponse: (List<Project>) -> Unit) {
+    val url = "http://127.0.0.1:5000/proyecto/proyectos_terminados"
+
+    CoroutineScope(Dispatchers.IO).launch {
+        val response = httpClient.get(url) {
+            contentType(ContentType.Application.Json)
+        }
+        if (response.status == HttpStatusCode.OK) {
             val listProyecto = response.body<List<Project>>()
             onSuccessResponse(listProyecto)
         } else {
